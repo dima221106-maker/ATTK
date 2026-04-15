@@ -32,7 +32,5 @@ public class CameraScaler : MonoBehaviour
                 camera.orthographicSize = orthographicSize;
             }
         }
-
-        Debug.Log($"📱 Screen: {Screen.width}x{Screen.height} | Ortho Size: {camera.orthographicSize}");
     }
 }
