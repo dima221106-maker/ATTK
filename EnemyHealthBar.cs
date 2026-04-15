@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    [Header("🎯 Привязка")]
+    [Header("Привязка")]
     [SerializeField] public Transform target;
 
-    [Header("📐 Позиция")]
+    [Header("Позиция")]
     [SerializeField] private Vector3 offset = new Vector3(0, 2.5f, 0);
 
-    [Header("🔒 Блокировка вращения")]
+    [Header("Блокировка вращения")]
     [SerializeField] private bool lockYRotation = true;
     [SerializeField] private bool lockZRotation = true;
     [SerializeField] private bool lockXRotation = false;
 
-    [Header("🎨 Настройки")]
+    [Header("Настройки")]
     [SerializeField] private int maxSegments = 5;
     [SerializeField] private Image fillImage;
 
@@ -69,7 +69,6 @@ public class EnemyHealthBar : MonoBehaviour
         fillImage.fillAmount = percent;
     }
 
-    // 🔥 ДОБАВЬ ЭТОТ МЕТОД:
     public void SetMaxSegments(int newMax)
     {
         maxSegments = newMax;
