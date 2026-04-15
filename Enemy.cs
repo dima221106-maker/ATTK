@@ -2,19 +2,19 @@
 
 public class EnemyHealth : MonoBehaviour
 {
-    [Header("❤️ Здоровье")]
+    [Header("Здоровье")]
     [SerializeField] private int maxHealthSegments = 5;
     [SerializeField] private int currentHealthSegments;
     [SerializeField] private float damagePerSegment = 10f;
 
-    [Header("📊 Полоска здоровья")]
+    [Header("Полоска здоровья")]
     [SerializeField] private GameObject healthBarPrefab;
     [SerializeField] private bool showHealthBar = true;
 
-    [Header("🛡️ Неуязвимость")]
+    [Header("Неуязвимость")]
     [SerializeField] private float invincibilityDuration = 0.5f;
 
-    [Header("📊 Отладка")]
+    [Header("Отладка")]
     [SerializeField] private bool showDebugLogs = false;
 
     private EnemyHealthBar healthBarInstance;
@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealthSegments = maxHealthSegments;
 
-        if (showDebugLogs) Debug.Log($"💚 [{gameObject.name}] Start! HP: {currentHealthSegments}/{maxHealthSegments}");
+        if (showDebugLogs) Debug.Log($"[{gameObject.name}] Start! HP: {currentHealthSegments}/{maxHealthSegments}");
 
         if (showHealthBar && healthBarPrefab != null)
         {
@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
                 healthBarInstance.SetMaxSegments(maxHealthSegments);
                 healthBarInstance.UpdateHealth(currentHealthSegments, maxHealthSegments);
 
-                if (showDebugLogs) Debug.Log("✅ Полоска создана!");
+                if (showDebugLogs) Debug.Log("Полоска создана!");
             }
         }
     }
@@ -49,19 +49,19 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// Нанести урон (в сегментах)
+    /// Нанести урон
     /// </summary>
     public void TakeDamage(float damage, Vector3 hitDirection = default)
     {
-        if (showDebugLogs) Debug.Log($"⚔️ [{gameObject.name}] Получил урон: {damage}");
+        if (showDebugLogs) Debug.Log($"[{gameObject.name}] Получил урон: {damage}");
 
         if (isDead || invincibilityTimer > 0) return;
 
-        // 🔥 Вычисляем сколько сегментов потерять
+        // Вычисляем сколько сегментов потерять
         int segmentsToLose = Mathf.CeilToInt(damage / damagePerSegment);
         currentHealthSegments = Mathf.Max(0, currentHealthSegments - segmentsToLose);
 
-        if (showDebugLogs) Debug.Log($"🔴 [{gameObject.name}] HP: {currentHealthSegments}/{maxHealthSegments}");
+        if (showDebugLogs) Debug.Log($"[{gameObject.name}] HP: {currentHealthSegments}/{maxHealthSegments}");
 
         if (healthBarInstance != null && showHealthBar)
         {
@@ -73,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// Нанести урон (просто 1 сегмент)
+    /// Нанести урон
     /// </summary>
     public void TakeDamageOneSegment(Vector3 hitDirection = default)
     {
@@ -92,13 +92,13 @@ public class EnemyHealth : MonoBehaviour
             healthBarInstance.UpdateHealth(currentHealthSegments, maxHealthSegments);
         }
 
-        if (showDebugLogs) Debug.Log($"💚 [{gameObject.name}] вылечен на {amount}. HP: {currentHealthSegments}/{maxHealthSegments}");
+        if (showDebugLogs) Debug.Log($"[{gameObject.name}] вылечен на {amount}. HP: {currentHealthSegments}/{maxHealthSegments}");
     }
 
     void Die()
     {
         isDead = true;
-        if (showDebugLogs) Debug.Log($"💀 [{gameObject.name}] УМЕР!");
+        if (showDebugLogs) Debug.Log($"[{gameObject.name}] УМЕР!");
 
         if (healthBarInstance != null)
         {
