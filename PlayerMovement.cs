@@ -6,25 +6,25 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("⚙️ Настройки")]
+    [Header("Настройки")]
     public float moveSpeed = 5f;
     public bool lockRotation = true;
     public float fixedAngle = -90f;
 
-    [Header("🕹️ Джойстик")]
+    [Header("Джойстик")]
     public Joystick mobileJoystick; // Перетащи сюда объект джойстика
 
-    [Header("⚡ Дэш")]
+    [Header("Дэш")]
     public float dashSpeed = 15f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
-    [Header("📱 Свайп для дэша")]
+    [Header("Свайп для дэша")]
     public float minSwipeDistance = 50f;
     public float maxSwipeTime = 0.5f;
 
-    [Header("🍎 Гравитация")]
-    public float gravity = -9.81f; // Сила притяжения (можно увеличить для "аркадности")
+    [Header("Гравитация")]
+    public float gravity = -9.81f; // Сила притяжения
     private Vector3 velocity;      // Вертикальная скорость
 
     private CharacterController controller;
@@ -54,14 +54,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
 
-        // Логика дэша (приоритет)
+        // Логика дэша
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
-            // Во время дэша двигаемся строго по направлению дэша
+            
             controller.Move(moveDirection.normalized * dashSpeed * Time.deltaTime);
             if (dashTimer <= 0) isDashing = false;
-            return; // Прерываем Update, чтобы не применять гравитацию/ходьбу во время дэша
+            return; 
         }
 
         // ПК: Дэш на Shift
@@ -83,11 +83,11 @@ public class PlayerMovement : MonoBehaviour
         // ПРИМЕНЕНИЕ ГРАВИТАЦИИ
         if (controller.isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // Прижимаем к земле, чтобы не проваливаться
+            velocity.y = -2f;
         }
         else
         {
-            velocity.y += gravity * Time.deltaTime; // Применяем гравитацию в воздухе
+            velocity.y += gravity * Time.deltaTime;
         }
 
         // ФИНАЛЬНОЕ ДВИЖЕНИЕ (Горизонталь + Гравитация)
