@@ -13,20 +13,20 @@ public class PlayerAttack : MonoBehaviour
     public Vector3 hitboxSize = new Vector3(2f, 2f, 1f);
     public Vector3 hitboxOffset = new Vector3(1f, 0f, 0f);
 
-    [Header("📱 Свайпы")]
+    [Header("Свайпы")]
     public float minSwipeDistance = 50f;
     public float maxSwipeTime = 0.5f;
 
-    [Header("🎬 Аниматоры")]
+    [Header("Аниматоры")]
     public Animator playerAnimator;   // knight (принимает направление)
     public Animator swingAnimator;    // square (принимает attack)
 
-    [Header("⚙️ Параметры Animator")]
+    [Header("Параметры Animator")]
     public string playerParamRight = "AttackRight";
     public string playerParamLeft = "AttackLeft";
     public string swingParamAttack = "attack";
 
-    [Header("🔍 Отладка")]
+    [Header("Отладка")]
     public bool debugLogs = true;
 
     private float cooldownTimer;
